@@ -1,7 +1,12 @@
 # docker-images
-This repo hosts all personal docker images
+This repo hosts all production docker images
 
-## Node-puppeteer
+## node-puppeteer
 
 Built off circleci/node
 Includes aws-cli, lsof, browsers
+
+## node-postgres
+
+Built off node-jessie
+Incldes postgres

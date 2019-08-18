@@ -1,4 +1,4 @@
-FROM node:10.16.0-jessie
+FROM node:lts-buster
 RUN apt-get update \
   && apt-get install -y postgresql postgresql-contrib \
   && apt-get install sudo \

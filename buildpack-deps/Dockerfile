@@ -16,10 +16,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Switch to the archive mirror until we can get people to
 # switch to Stretch.
 RUN if grep -q Debian /etc/os-release && grep -q jessie /etc/os-release; then \
-	rm /etc/apt/sources.list \
-    && echo "deb http://archive.debian.org/debian/ jessie main" >> /etc/apt/sources.list \
-    && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list \
-	; fi
+  rm /etc/apt/sources.list \
+  && echo "deb http://archive.debian.org/debian/ jessie main" >> /etc/apt/sources.list \
+  && echo "deb http://security.debian.org/debian-security jessie/updates main" >> /etc/apt/sources.list \
+  ; fi
 
 # Make sure PATH includes ~/.local/bin
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839155
@@ -31,9 +31,9 @@ RUN echo 'PATH="$HOME/.local/bin:$PATH"' >> /etc/profile.d/user-local-path.sh
 RUN apt-get update \
   && mkdir -p /usr/share/man/man1 \
   && apt-get install -y \
-    git mercurial xvfb apt \
-    locales sudo openssh-client ca-certificates tar gzip parallel \
-    net-tools netcat unzip zip bzip2 gnupg curl wget make
+  git mercurial xvfb apt \
+  locales sudo openssh-client ca-certificates tar gzip parallel \
+  net-tools netcat unzip zip bzip2 gnupg curl wget make
 
 
 # Set timezone to UTC by default
@@ -93,7 +93,8 @@ RUN groupadd --gid 3434 circleci \
 
 # BEGIN IMAGE CUSTOMIZATIONS
 
-RUN apt-get update && apt-get install -y python-dev python-pip lsof && pip install awscli
+RUN apt-get update && apt-get install -y python-dev python-pip lsof
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install
 
 # END IMAGE CUSTOMIZATIONS
 
